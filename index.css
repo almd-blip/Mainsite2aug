@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-dyslexic: "Atkinson Hyperlegible", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--bg-color, #faf8f5);
+  --color-foreground: var(--text-color, #1B0A3B);
+}
+
+:root {
+  --bg-color: #faf8f5;
+  --text-color: #1B0A3B;
+  --action-color: #912A4A;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  color-scheme: light;
+}
+
+/* Explicit fallback utilities for background/foreground */
+.bg-background {
+  background-color: var(--bg-color, #faf8f5) !important;
+}
+
+.text-background {
+  color: var(--bg-color, #faf8f5) !important;
+}
+
+.bg-foreground {
+  background-color: var(--text-color, #1B0A3B) !important;
+}
+
+.text-foreground {
+  color: var(--text-color, #1B0A3B) !important;
+}
+
+html, body, #root {
+  line-height: 1.6;
+  background-color: var(--bg-color, #faf8f5);
+  color: var(--text-color, #1B0A3B);
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Dyslexia font active class */
+.dyslexia-mode {
+  font-family: var(--font-dyslexic) !important;
+}
+
+/* Enhanced Focus ring mode */
+.enhanced-focus *:focus-visible {
+  outline: 3px solid currentColor !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* WCAG high-visibility focus for all buttons and interactive controls */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+/* Project-wide text presentation rule: all visible text stays left-aligned, non-italic, and non-uppercase. */
+#second-thought-shell-root,
+#second-thought-shell-root * {
+  text-align: left !important;
+  font-style: normal !important;
+  text-transform: none !important;
+}
+
+/* Text colour governance: action reveal controls are burgundy; all other visible
+   text uses the theme text colour (Indigo by default). Colour is governed by CSS
+   custom properties instead of hard-coded !important overrides, so dark mode,
+   high-contrast and theme switching work as intended. */
+#second-thought-shell-root {
+  color: var(--text-color, #1B0A3B);
+}
+
+/* Burgundy accent for expand/reveal controls ("Find out more", "See less", +/−). */
+#second-thought-shell-root .st-action-burgundy,
+#second-thought-shell-root .st-action-burgundy * {
+  color: var(--action-color, #912A4A) !important;
+}
+
+/* Soft "current colour" controls: instead of dark text-reversing fills, selected
+   controls keep the theme text colour on a soft indigo tint. Tied to CSS variables
+   so the treatment adapts to dark mode and theme switching. */
+#second-thought-shell-root :is(button, label)[class*="bg-[#1B0A3B]"],
+#second-thought-shell-root :is(button, label)[class*="bg-current"],
+#second-thought-shell-root :is(button, label)[class*="bg-foreground"] {
+  color: var(--text-color, #1B0A3B);
+  background-color: rgba(27, 10, 59, 0.06) !important;
+  border-color: rgba(27, 10, 59, 0.28) !important;
+}
+
+#second-thought-shell-root :is(button, label)[class*="bg-[#912A4A]"] {
+  background-color: rgba(145, 42, 74, 0.10) !important;
+}
+

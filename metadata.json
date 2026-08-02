@@ -1,0 +1,6 @@
+{
+  "name": "Second Thought Shell",
+  "description": "An accessible, calm, and supportive application shell framework for the Second Thought family of applications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
