@@ -8,7 +8,7 @@
 import {
   handlePracticeEngineRequest,
   type PracticeEngineEnv
-} from '../../src/api/practice-engine/route';
+} from './route';
 
 type PagesFunctionContext<Env> = {
   request: Request;
